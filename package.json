@@ -1,0 +1,18 @@
+{
+  "name": "watches",
+  "version": "1.0.0",
+  "description": "A modern online clock inspired by Apple Watch, featuring accurate time, timer, stopwatch, alarms, weather, world clock, and more. Enjoy a clean, minimalist interface designed for both mobile and desktop.",
+  "keywords": [
+    "watch",
+    "time",
+    "weather",
+    "timer"
+  ],
+  "license": "ISC",
+  "author": "misha",
+  "type": "commonjs",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
