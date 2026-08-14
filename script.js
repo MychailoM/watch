@@ -30,7 +30,7 @@ const timer = document.querySelector('.timer')
 const openTimer = document.querySelector('.open-timer');
 openTimer.addEventListener('click', () => {
     timer.classList.toggle("active")
-})
+});
 
 const apps = document.querySelectorAll('.app');
 const closeButtons = document.querySelectorAll('.close-app');
@@ -110,3 +110,79 @@ timerPause.addEventListener('click', () => {
     timerControlWrap.classList.toggle('active');
 });
 
+
+
+
+
+const openStopwatch = document.querySelector('.open-stopwatch');
+const stopwatch = document.querySelector('.stopwatch');
+
+openStopwatch.addEventListener('click', () => {
+    stopwatch.classList.toggle('active');
+});
+
+const stopwatchText = document.querySelector('.stopwatch-text');
+const ssStopwatch = document.querySelector('.ss-stopwatch');
+const clearStopwatch = document.querySelector('.clear-stopwatch');
+
+let stopwatchStatus = false;
+let stopwatchValue = 0;
+let stopwatchTimer = null;
+let startTime = 0;
+
+ssStopwatch.addEventListener('click', () => {
+    if (!stopwatchStatus) {
+        startStopwatch();
+    } else {
+        stopStopwatch();
+    }
+});
+
+const startStopwatch = () => {
+    stopwatchStatus = true;
+    startTime = Date.now() - stopwatchValue;
+
+    ssStopwatch.textContent = 'stop';
+    ssStopwatch.classList.add('active');
+
+    stopwatchTimer = setInterval(() => {
+        stopwatchValue = Date.now() - startTime;
+        renderStopwatch();
+    }, 10);
+};
+
+const stopStopwatch = () => {
+    stopwatchStatus = false;
+
+    clearInterval(stopwatchTimer);
+    stopwatchTimer = null;
+
+    ssStopwatch.textContent = 'start';
+    ssStopwatch.classList.remove('active');
+};
+
+const renderStopwatch = () => {
+    const minutes = Math.floor(stopwatchValue / 60000);
+    const seconds = Math.floor((stopwatchValue % 60000) / 1000);
+    const milliseconds = Math.floor((stopwatchValue % 1000) / 10);
+
+    const minutesVal = String(minutes).padStart(2, '0');
+    const secondsVal = String(seconds).padStart(2, '0');
+    const millisecondsVal = String(milliseconds).padStart(2, '0');
+
+    stopwatchText.textContent =
+        `${minutesVal}:${secondsVal},${millisecondsVal}`;
+};
+
+clearStopwatch.addEventListener('click', () => {
+    clearInterval(stopwatchTimer);
+
+    stopwatchTimer = null;
+    stopwatchStatus = false;
+    stopwatchValue = 0;
+
+    ssStopwatch.textContent = 'start';
+    ssStopwatch.classList.remove('active');
+
+    renderStopwatch();
+});
