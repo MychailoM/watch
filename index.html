@@ -20,13 +20,13 @@
         <div class="dot"></div>
         <div class="dot"></div>
         <div class="first-button"></div>
-        <div class="button"></div>      
+        <div class="button"></div>
     </div>
 
 
 
     <div class="watches">
-        
+
         <div class="screen">
             <h2 class="time">00:00</h2>
             <h3 class="date">00.00.0000</h3>
@@ -37,7 +37,39 @@
             </button>
         </div>
         <div class="menu">
+            <button class="open-btns open-timer">
+                <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#fff"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 22h14" />
+                    <path d="M5 2h14" />
+                    <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" />
+                    <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />
+                </svg>
+            </button>
+        </div>
+        <div class="timer app">
+            <button class="close-app">X</button>
 
+            <div class="timer-wrap">
+                <div class="hours-wrap">
+                    <label class="timer-label">Години</label>
+                    <input placeholder="00" maxlength="2" class="hours-inp timer-inp">
+                </div>
+                <div class="minuts-wrap">
+                    <label class="timer-label">Хвилини</label>
+                    <input placeholder="00" maxlength="2" class="minutes-inp timer-inp">
+                </div>
+                <div class="seconds-wrap">
+                    <label class="timer-label">Секунди</label>
+                    <input placeholder="00" maxlength="2" class="seconds-inp timer-inp">
+                </div>
+            </div>
+
+            <button class="start-timer active">Start</button>
+            <div class="timer-control-wrap">
+                <button class="timer-stop">Stop</button>
+                <button class="timer-pause">Pause</button>
+            </div>
         </div>
     </div>
 
