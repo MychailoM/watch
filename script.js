@@ -39,11 +39,20 @@ closeButtons.forEach(button => {
     button.addEventListener('click', () => {
         apps.forEach(app => {
             app.classList.remove('active');
+            arrow.style.display = 'flex';
         });
     });
 });
 
+const openButtons = document.querySelectorAll('.open-btns');
 
+openButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        apps.forEach(app => {
+            arrow.style.display = 'none';
+        });
+    });
+});
 
 
 
@@ -186,3 +195,192 @@ clearStopwatch.addEventListener('click', () => {
 
     renderStopwatch();
 });
+
+
+const weather = document.querySelector('.weather');
+const openWeather = document.querySelector('.open-weather');
+const weatherInp = document.querySelector('.city-inp');
+const weatherBtn = document.querySelector('.search-city');
+const weatherWrap = document.querySelector('.weather-wrap');
+
+openWeather.addEventListener('click', () => {
+    weather.classList.toggle('active');
+});
+
+const apiKey = '5ec584e7cf36ca20d779b522aa3500d3';
+let cityName = '';
+
+weatherBtn.addEventListener('click', () => {
+    cityName = weatherInp.value.trim();
+
+    if (!cityName) return;
+
+    getCoordinates();
+});
+
+const getCoordinates = async () => {
+    showLoader();
+
+    try {
+        const res = await fetch(
+            `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(cityName)}&limit=1&appid=${apiKey}`
+        );
+
+        const data = await res.json();
+
+        if (!data.length) {
+            showError('Місто не знайдено');
+            return;
+        }
+
+        const { lat, lon } = data[0];
+
+        getWeather(lat, lon);
+
+    } catch (error) {
+        showError('Помилка завантаження');
+        console.error(error);
+    }
+};
+
+const getWeather = async (lat, lon) => {
+    try {
+        const res = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=uk&appid=${apiKey}`
+        );
+
+        const weatherData = await res.json();
+
+        if (!res.ok) {
+            showError('Не вдалося отримати погоду');
+            return;
+        }
+
+        const iconCode = weatherData.weather[0].icon;
+
+        const iconUrl =
+            `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+        renderWeather(weatherData, iconUrl);
+
+    } catch (error) {
+        showError('Помилка завантаження погоди');
+        console.error(error);
+    }
+};
+
+const renderWeather = (weatherData, iconUrl) => {
+
+    const sunrise = weatherData.sys.sunrise;
+    const sunset = weatherData.sys.sunset;
+
+    const sunriseDate = new Date(sunrise * 1000);
+
+    const sunriseTime = sunriseDate.toLocaleTimeString('uk-UA', {
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
+    const sunsetDate = new Date(sunset * 1000);
+
+    const sunsetTime = sunsetDate.toLocaleTimeString('uk-UA', {
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
+    weatherWrap.innerHTML = `
+        <h4 class="city-name">
+            ${weatherData.name}
+        </h4>
+
+        <div class="weather-container">
+
+            <img
+                src="${iconUrl}"
+                alt="${weatherData.weather[0].description}"
+                class="weather-clouds-img"
+            >
+
+            <div class="weather-temp-wrap">
+
+                <h3 class="weather-temp">
+                    ${Math.round(weatherData.main.temp)}°
+                </h3>
+
+                <h4 class="weather-feel-temp">
+                    Відчувається як
+                    ${Math.round(weatherData.main.feels_like)}°
+                </h4>
+
+            </div>
+        </div>
+        <p class="weather-clouds">
+                ${weatherData.weather[0].description}
+            </p>
+
+            <div class="weather-data-wrap">
+
+                <div class="humidity-wrap">
+                    <h5 class="weather-data-name">
+                        Вологість
+                    </h5>
+
+                    <h4 class="weather-data">
+                        ${weatherData.main.humidity}%
+                    </h4>
+                </div>
+
+                <div class="wind-wrap">
+                    <h5 class="weather-data-name">
+                        Вітер
+                    </h5>
+
+                    <h4 class="weather-data">
+                        ${weatherData.wind.speed} м/с
+                    </h4>
+                </div>
+
+                <div class="pressure-wrap">
+                    <h5 class="weather-data-name">
+                        Тиск
+                    </h5>
+
+                    <h4 class="weather-data">
+                        ${weatherData.main.pressure} гПа
+                    </h4>
+                </div>
+
+            </div>
+
+            <div class="sun-wrap">
+
+                <h4>
+                    Схід сонця: ${sunriseTime}
+                </h4>
+
+                <h4>
+                    Захід сонця: ${sunsetTime}
+                </h4>
+
+            </div>
+    `;
+};
+
+const showLoader = () => {
+
+    weatherWrap.innerHTML = `
+        <div class="weather-loader">
+            <div class="loader"></div>
+            <p>Завантаження...</p>
+        </div>
+    `;
+};
+
+const showError = (message) => {
+
+    weatherWrap.innerHTML = `
+        <div class="weather-error">
+            ${message}
+        </div>
+    `;
+};

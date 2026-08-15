@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watches</title>
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body >
     <video class="video" width="100%" autoplay muted loop playsinline>
         <source src="./body-background.mp4" type="video/mp4">
     </video>
@@ -48,7 +49,6 @@
             </button>
 
             <button class="open-btns open-stopwatch">
-
                 <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#fff"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="13" r="8"></circle>
@@ -58,7 +58,32 @@
                     <line x1="12" y1="2" x2="12" y2="5"></line>
                     <path d="M5 6L7 4"></path>
                 </svg>
+            </button>
 
+            <button class="open-btns open-weather">
+                <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="#FFD21F" stroke-width="2" stroke-linecap="round">
+                        <line x1="29" y1="2" x2="29" y2="4" />
+                        <line x1="29" y1="20" x2="29" y2="22" />
+                        <line x1="19" y1="12" x2="21" y2="12" />
+                        <line x1="37" y1="12" x2="39" y2="12" />
+                        <line x1="22" y1="5" x2="23.5" y2="6.5" />
+                        <line x1="35" y1="18" x2="36.5" y2="19.5" />
+                        <line x1="35" y1="6.5" x2="36.5" y2="5" />
+                    </g>
+
+                    <circle cx="29" cy="12" r="7" fill="#FFD21F" />
+
+                    <path d="M8 32
+           C4.7 32 3 29.8 3 27
+           C3 24.2 5.2 22 8 22
+           C8.6 17.7 12.2 15 16.2 15
+           C19.8 15 22.8 17.2 24 20.5
+           C25.2 19.7 26.7 19.2 28.3 19.2
+           C32.2 19.2 35 22 35 25.5
+           C35 29.1 32.2 32 28.5 32
+           Z" fill="#fff" stroke="#fff" stroke-width="2" stroke-linejoin="round" />
+                </svg>
             </button>
         </div>
         <div class="timer app">
@@ -95,7 +120,26 @@
                     <button class="ss-stopwatch">start</button>
                     <button class="clear-stopwatch">clear</button>
                 </div>
-                
+
+            </div>
+
+        </div>
+
+        <div class="weather app">
+            <button class="close-app">X</button>
+
+            <div class="weather-searchbar">
+                <input placeholder="city" type="text" class="city-inp">
+                <button class="search-city">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                        <path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="weather-wrap">
+
             </div>
 
         </div>
@@ -105,3 +149,5 @@
 </body>
 
 </html>
+
+
