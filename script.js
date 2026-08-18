@@ -1,3 +1,18 @@
+navigator.getBattery().then(battery => {
+  function update() {
+    const percent = Math.round(battery.level * 100);
+
+    document.querySelector(".battery").value = percent;
+    document.querySelector(".batteryText").textContent = percent + "%";
+  }
+
+  update();
+  battery.addEventListener("levelchange", update);
+});
+
+
+const clockSound = document.getElementById('clock-music');
+
 const time = document.querySelector('.time');
 const date = document.querySelector('.date');
 
@@ -86,7 +101,11 @@ const startTimer = (totalTime) => {
 
         if (totalTime <= 0) {
             clearInterval(timerCounter);
-            startTimerBtn.classList.toggle('active')
+            startTimerBtn.classList.toggle('active');
+            clockSound.play();
+            secondsInp.value = '';
+            minutesInp.value = '';
+            hoursInp.value = '';
         }
     }, 1000);
 };
@@ -195,6 +214,60 @@ clearStopwatch.addEventListener('click', () => {
 
     renderStopwatch();
 });
+
+
+const alarmClock = document.querySelector('.alarmClock')
+const openAlarmClock = document.querySelector('.open-alarm-clock');
+openAlarmClock.addEventListener('click', () => {
+    alarmClock.classList.toggle("active")
+});
+
+const alarmTime = document.querySelector('#alarm-time');
+const setAlarmBtn = document.querySelector('#set-alarm');
+const cancelAlarmBtn = document.querySelector('#cancel-alarm');
+const alarmStatus = document.querySelector('#alarm-status');
+const alarmSound = document.querySelector('#alarm-sound');
+
+let alarm = null;
+
+setAlarmBtn.addEventListener('click', () => {
+    if (!alarmTime.value) {
+        alarmStatus.textContent = 'Виберіть час';
+        return;
+    }
+
+    alarm = alarmTime.value;
+
+    alarmStatus.textContent = `Будильник встановлено на ${alarm}`;
+});
+
+cancelAlarmBtn.addEventListener('click', () => {
+    alarm = null;
+
+    alarmSound.pause();
+    alarmSound.currentTime = 0;
+
+    alarmStatus.textContent = 'Будильник скасовано';
+});
+
+setInterval(() => {
+    if (!alarm) return;
+
+    const now = new Date();
+
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+    const currentTime = `${hours}:${minutes}`;
+
+    if (currentTime === alarm) {
+        alarmSound.play();
+
+        alarmStatus.textContent = 'Час прокидатися!';
+
+        alarm = null;
+    }
+}, 1000);
 
 
 const weather = document.querySelector('.weather');

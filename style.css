@@ -109,6 +109,18 @@ body::after {
     gap: 0;
 }
 
+.battery-status{
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    top: 36px;
+    left: 36px;
+}
+
+.batteryText{
+    color: #fff;
+}
+
 .time {
     font-size: 52px;
     color: #fff;
@@ -159,7 +171,7 @@ body::after {
     transition: all .3s ease;
     padding: 40px;
     display: flex;
-    gap: 24px;
+    gap: 21px;
     flex-wrap: wrap;
 }
 
@@ -175,8 +187,8 @@ body::after {
     border-radius: 50%;
     padding: 4px;
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,6 +201,10 @@ body::after {
 
 .open-stopwatch {
     background-color: yellowgreen;
+}
+
+.open-alarm-clock {
+    background-color: #ff6b4a;
 }
 
 .open-weather {
@@ -340,6 +356,7 @@ body::after {
     padding-top: 60px;
     color: #fff;
     font-size: 32px;
+    margin-bottom: 32px;
 }
 
 
@@ -368,7 +385,69 @@ body::after {
     border-radius: 8px;
 }
 
+.alarmClock{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, rgba(0, 0, 0, 1) 0%, rgba(26, 26, 26, 1) 42%, rgba(33, 33, 33, 1) 69%, rgba(0, 0, 0, 1) 100%);
+    position: absolute;
+    border-radius: 64px;
+    bottom: -150%;
+    transition: all .3s ease;
+    padding: 40px;
+}
 
+.alarmClock.active {
+    transform: translateY(-150%)
+}
+
+.alarm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding-top: 44px;
+}
+
+.alarm-inp{
+    background-color: transparent;
+    border: 1px solid #555;
+    font-size: 40px;
+    color: #fff;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.alarm-inp::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.alarm-control{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.alarm-btn{
+    padding: 4px 8px;
+    background-color: rgba(0, 128, 0, 0.4);
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.alarm-btn:nth-child(2){
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+#alarm-status{
+    text-align: center;
+    line-height: 140%;
+    color: #fff;
+    font-size: 18px;
+}
 
 .weather {
     width: 100%;
@@ -464,35 +543,35 @@ body::after {
     height: 24px;
 }
 
-.weather-wrap{
+.weather-wrap {
     position: relative;
     z-index: 7;
     margin-top: 16px;
 }
 
-.city-name{
+.city-name {
     color: white;
     font-size: 24px;
 }
 
-.weather-container{
+.weather-container {
     display: flex;
     justify-content: center;
     margin-bottom: 8px;
     align-items: center;
 }
 
-.weather-temp{
+.weather-temp {
     color: #fff;
     font-size: 52px;
 }
 
-.weather-feel-temp{
+.weather-feel-temp {
     font-size: 16px;
     color: #ffffff5d;
 }
 
-.weather-clouds{
+.weather-clouds {
     text-align: center;
     color: #fff;
     font-weight: 100;
@@ -500,7 +579,7 @@ body::after {
     margin-bottom: 16px;
 }
 
-.weather-data-wrap{
+.weather-data-wrap {
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -517,7 +596,7 @@ body::after {
 
 .humidity-wrap,
 .wind-wrap,
-.pressure-wrap{
+.pressure-wrap {
     width: 30%;
     display: flex;
     flex-direction: column;
@@ -526,24 +605,24 @@ body::after {
     gap: 4px;
 }
 
-.wind-wrap{
+.wind-wrap {
     border-left: 2px solid rgba(255, 255, 255, 0.12);
     border-right: 2px solid rgba(255, 255, 255, 0.12);
 }
 
-.weather-data-name{
+.weather-data-name {
     font-size: 14px;
     color: #fff;
     letter-spacing: 1px;
 }
 
-.weather-data{
+.weather-data {
     font-size: 14px;
     color: #fff;
     letter-spacing: 1px;
 }
 
-.sun-wrap{
+.sun-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;

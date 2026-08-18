@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
 </head>
 
-<body >
+<body>
     <video class="video" width="100%" autoplay muted loop playsinline>
         <source src="./body-background.mp4" type="video/mp4">
     </video>
@@ -27,8 +27,14 @@
 
 
     <div class="watches">
-
         <div class="screen">
+            <div class="battery-status">
+                <meter value="100" min="0" max="100" low="15" high="60" optimum="80" class="battery"
+                    style="width: 32px;"></meter>
+                <span class="batteryText"></span>
+            </div>
+
+
             <h2 class="time">00:00</h2>
             <h3 class="date">00.00.0000</h3>
 
@@ -39,7 +45,7 @@
         </div>
         <div class="menu">
             <button class="open-btns open-timer">
-                <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#fff"
+                <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#fff"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 22h14" />
                     <path d="M5 2h14" />
@@ -49,7 +55,7 @@
             </button>
 
             <button class="open-btns open-stopwatch">
-                <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#fff"
+                <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#fff"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="13" r="8"></circle>
                     <line x1="12" y1="9" x2="12" y2="13"></line>
@@ -60,8 +66,24 @@
                 </svg>
             </button>
 
+            <button class="open-btns open-alarm-clock">
+                <svg width="36" height="36" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M25 20 L17 14 L12 21" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M55 20 L63 14 L68 21" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <line x1="40" y1="14" x2="40" y2="9" stroke="white" stroke-width="4" stroke-linecap="round" />
+                    <circle cx="40" cy="40" r="25" fill="none" stroke="white" stroke-width="4" />
+                    <line x1="40" y1="40" x2="40" y2="26" stroke="white" stroke-width="4" stroke-linecap="round" />
+                    <line x1="40" y1="40" x2="51" y2="46" stroke="white" stroke-width="4" stroke-linecap="round" />
+                    <circle cx="40" cy="40" r="3" fill="white" />
+                    <line x1="25" y1="61" x2="18" y2="69" stroke="white" stroke-width="4" stroke-linecap="round" />
+                    <line x1="55" y1="61" x2="62" y2="69" stroke="white" stroke-width="4" stroke-linecap="round" />
+                </svg>
+            </button>
+
             <button class="open-btns open-weather">
-                <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <svg width="36" height="36" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
                     <g stroke="#FFD21F" stroke-width="2" stroke-linecap="round">
                         <line x1="29" y1="2" x2="29" y2="4" />
                         <line x1="29" y1="20" x2="29" y2="22" />
@@ -125,6 +147,34 @@
 
         </div>
 
+
+        <div class="alarmClock app">
+            <button class="close-app">X</button>
+
+            <div class="alarm">
+                <input type="time" class="alarm-inp" id="alarm-time">
+
+                <div class="alarm-control">
+                    <button id="set-alarm" class="alarm-btn">
+                        Встановити
+                    </button>
+
+                    <button id="cancel-alarm" class="alarm-btn">
+                        Скасувати
+                    </button>
+                </div>
+
+
+                <p id="alarm-status"></p>
+
+                <audio id="alarm-sound" loop>
+                    <source src="./freesound_community-house_alarm-clock_loud-92419.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+
+
+
         <div class="weather app">
             <button class="close-app">X</button>
 
@@ -145,9 +195,13 @@
         </div>
     </div>
 
+    <audio id="clock-music">
+        <source src="./freesound_community-house_alarm-clock_loud-92419.mp3" type="audio/mpeg">
+    </audio>
+
+
+
     <script type="module" src="script.js"></script>
 </body>
 
 </html>
-
-
