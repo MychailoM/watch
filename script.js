@@ -1,13 +1,13 @@
 navigator.getBattery().then(battery => {
-  function update() {
-    const percent = Math.round(battery.level * 100);
+    function update() {
+        const percent = Math.round(battery.level * 100);
 
-    document.querySelector(".battery").value = percent;
-    document.querySelector(".batteryText").textContent = percent + "%";
-  }
+        document.querySelector(".battery").value = percent;
+        document.querySelector(".batteryText").textContent = percent + "%";
+    }
 
-  update();
-  battery.addEventListener("levelchange", update);
+    update();
+    battery.addEventListener("levelchange", update);
 });
 
 
@@ -457,3 +457,86 @@ const showError = (message) => {
         </div>
     `;
 };
+
+
+
+const openCalculator = document.querySelector('.open-calculator');
+const calculator = document.querySelector('.calculator');
+
+openCalculator.addEventListener('click', () => {
+    calculator.classList.toggle('active');
+});
+
+
+
+const calculatorScreen = document.querySelector('.calculator-screen');
+const calculatorNumButtons = document.querySelectorAll('.calculator-number-btn');
+const calculatorOpButtons = document.querySelectorAll('.calculator-operator-btn');
+const calculatorClearBtn = document.querySelector('.calculator-clear-btn');
+const calculatorEqualsBtn = document.querySelector('.calculator-equals-btn');
+
+let calculatorNumArr = [];
+let calculatorNum = 0;
+let numA = null;
+let numB = null;
+let calculatorOp = null;
+
+function calculate(a, b, op) {
+    switch (op) {
+        case '+': return a + b;
+        case '-': return a - b;
+        case '*': return a * b;
+        case '/': return a / b;
+    }
+}
+
+calculatorClearBtn.addEventListener('click', () => {
+    numA = null;
+    numB = null;
+    calculatorNumArr = [];
+    calculatorNum = 0;
+    calculatorOp = null;
+    calculatorScreen.textContent = calculatorNum;
+})
+
+calculatorNumButtons.forEach(calculatorButton => {
+    calculatorButton.addEventListener('click', () => {
+        calculatorNumArr.push(calculatorButton.textContent);
+        calculatorNum = Number(calculatorNumArr.join(''));
+        calculatorScreen.textContent = calculatorNum;
+    });
+});
+
+calculatorOpButtons.forEach(calculatorButton => {
+    calculatorButton.addEventListener('click', () => {
+        const currentNum = calculatorNum;
+
+        if (numA === null) {
+            numA = currentNum;
+        } else if (calculatorOp && calculatorNumArr.length > 0) {
+            numB = currentNum;
+            numA = calculate(numA, numB, calculatorOp);
+            calculatorScreen.textContent = Math.round(parseFloat(numA) * 100) / 100;
+        }
+
+        calculatorOp = calculatorButton.textContent;
+        calculatorNum = 0;
+        calculatorNumArr = [];
+    });
+});
+
+calculatorEqualsBtn.addEventListener('click', () => {
+    if (calculatorOp === null || numA === null) return;
+    numB = calculatorNum;
+
+    if (calculatorOp === '/' && numB === 0) {
+        calculatorScreen.textContent = 'Помилка';
+        return;
+    }
+
+    numA = calculate(numA, numB, calculatorOp);
+    calculatorScreen.textContent = Math.round(parseFloat(numA) * 100) / 100;
+    calculatorOp = null;
+    calculatorNum = numA;
+    calculatorNumArr = [numA.toString()];
+});
