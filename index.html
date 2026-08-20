@@ -123,6 +123,17 @@
                     <line x1="12" y1="18" x2="12" y2="18" />
                     <line x1="16" y1="18" x2="16" y2="18" />
                 </svg>
+            </button>
+
+            <button class="open-btns open-notes">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
+                    stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
 
             </button>
         </div>
@@ -217,7 +228,7 @@
 
             <h3 class="calculator-screen">0</h3>
             <div class="calculator-buttons-wrap">
-                <button class="calculator-button calculator-button-1 calculator-clear-btn">C</button>                
+                <button class="calculator-button calculator-button-1 calculator-clear-btn">C</button>
                 <button class="calculator-button calculator-button-2 calculator-operator-btn">/</button>
                 <button class="calculator-button calculator-button-3 calculator-operator-btn">*</button>
                 <button class="calculator-button calculator-button-4 calculator-operator-btn">-</button>
@@ -225,7 +236,7 @@
                 <button class="calculator-button calculator-button-5 calculator-number-btn">7</button>
                 <button class="calculator-button calculator-button-5 calculator-number-btn">8</button>
                 <button class="calculator-button calculator-button-6 calculator-number-btn">9</button>
-                
+
                 <button class="calculator-button calculator-button-8 calculator-number-btn">4</button>
                 <button class="calculator-button calculator-button-9 calculator-number-btn">5</button>
                 <button class="calculator-button calculator-button-10 calculator-number-btn">6</button>
@@ -240,7 +251,27 @@
                 <button class="calculator-button calculator-button-17 calculator-equals-btn">=</button>
             </div>
         </div>
+
+        <div class="notes app">
+        <button class="close-app">X</button>
+        <div class="notes-app-wrap">
+            <button class="add-note">+</button>
+            <div class="notes-wrap active">
+
+            </div>
+        </div>
+        <div class="new-note-menu">
+            <input required type="text" placeholder="Назва" class="new-note-name-inp">
+            <textarea class="new-note-inp"></textarea>
+            <div class="new-note-controll-wrap">
+                <button class="add-new-note">Add</button>
+                <button class="cancel-new-note">Cancel</button>
+            </div>
+        </div>
     </div>
+    </div>
+
+    
 
     <audio id="clock-music">
         <source src="./freesound_community-house_alarm-clock_loud-92419.mp3" type="audio/mpeg">

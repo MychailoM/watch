@@ -1,3 +1,5 @@
+import { nanoid } from "https://cdn.jsdelivr.net/npm/nanoid/+esm";
+
 navigator.getBattery().then(battery => {
     function update() {
         const percent = Math.round(battery.level * 100);
@@ -540,3 +542,117 @@ calculatorEqualsBtn.addEventListener('click', () => {
     calculatorNum = numA;
     calculatorNumArr = [numA.toString()];
 });
+
+
+
+
+const openNotes = document.querySelector('.open-notes');
+const notes = document.querySelector('.notes');
+
+openNotes.addEventListener('click', () => {
+    notes.classList.toggle('active');
+});
+
+let notesList = [];
+
+const addNote = document.querySelector('.add-note');
+const newNoteMenu = document.querySelector('.new-note-menu');
+
+const notesWrap = document.querySelector('.notes-wrap');
+
+const addNewNote = document.querySelector('.add-new-note');
+const cancelNewNote = document.querySelector('.cancel-new-note');
+
+const newNoteTitleInp = document.querySelector('.new-note-name-inp');
+const newNoteTextInp = document.querySelector('.new-note-inp');
+
+addNote.addEventListener('click', () => {
+    newNoteMenu.classList.toggle('active');
+    addNote.classList.toggle('active');
+    notesWrap.classList.toggle('active');
+})
+
+if (notesList.length === 0) {
+    notesList = JSON.parse(localStorage.getItem('notes')) || [];
+    if (notesList.length === 0) {
+        notesWrap.textContent = 'Нотаток немає!';
+    }
+};
+
+addNewNote.addEventListener('click', () => {
+    if(newNoteTitleInp.value.trim() === ''){
+        alert('Заповніть поля!');
+        return
+    }
+
+    let newNote = {
+        id: nanoid(),
+        title: newNoteTitleInp.value,
+        text: newNoteTextInp.value
+    }
+
+    notesList.push(newNote);
+    localStorage.setItem('notes', JSON.stringify(notesList));
+    renderNotes();
+    newNoteMenu.classList.toggle('active');
+    addNote.classList.toggle('active');
+    notesWrap.classList.toggle('active'); 
+    newNoteTextInp.value = '';
+    newNoteTitleInp.value = '';   
+});
+
+cancelNewNote.addEventListener('click', () => {
+    newNoteTextInp.value = '';
+    newNoteTitleInp.value = '';  
+    newNoteMenu.classList.toggle('active');
+    addNote.classList.toggle('active');
+    notesWrap.classList.toggle('active'); 
+})
+
+const renderNotes = () => {
+    notesWrap.innerHTML = '';
+
+    if (notesList.length === 0) {
+        notesWrap.textContent = 'Нотаток немає!';
+        return;
+    }
+
+    notesList.forEach(note => {
+        notesWrap.innerHTML += `
+            <div class="note">
+                <h3 class="note-title">${note.title}</h3>
+                <p class="note-text">${note.text}</p>
+                <button class="delete-note" data-id="${note.id}">x</button>
+            </div>
+        `;
+    });
+
+    const deleteNotes = document.querySelectorAll('.delete-note');
+
+    deleteNotes.forEach(deleteNote => {
+        deleteNote.addEventListener('click', () => {
+            const id = deleteNote.dataset.id;
+
+            notesList = notesList.filter(note => note.id !== id);
+
+            localStorage.setItem('notes', JSON.stringify(notesList));
+
+            renderNotes();
+        });
+    });
+
+    const notes = document.querySelectorAll('.note');
+
+    notes.forEach(note => {
+        note.addEventListener('click', () => {
+            note.classList.toggle('active')
+        })
+    })
+};
+
+renderNotes()
+
+
+// localStorage.setItem('tasks', JSON.stringify(notesList));
+// console.log(localStorage.getItem('tasks'))
+

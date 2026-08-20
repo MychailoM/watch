@@ -215,6 +215,10 @@ body::after {
     background-color: #364b74;
 }
 
+.open-notes{
+    background-color: rgba(187, 147, 224, 0.81);
+}
+
 .app {
     z-index: 99;
     position: relative;
@@ -812,4 +816,170 @@ body::after {
     grid-row: span 2 / span 2;
     grid-column-start: 4;
     grid-row-start: 4;
+}
+
+.notes {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, rgba(0, 0, 0, 1) 0%, rgba(26, 26, 26, 1) 42%, rgba(33, 33, 33, 1) 69%, rgba(0, 0, 0, 1) 100%);
+    position: absolute;
+    border-radius: 64px;
+    bottom: -150%;
+    transition: all .3s ease;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.notes.active {
+    transform: translateY(-150%)
+}
+
+.notes-app-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-note{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #fff;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.add-note.active{
+    transform: rotate(45deg);
+}
+
+.notes-wrap{
+    display: none;
+    color: #fff;
+    overflow-y: auto;
+    max-height: 230px;
+}
+
+.notes-wrap.active {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.note {
+    height: 40px;
+    padding: 8px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.203);
+    width: 280px;
+    overflow: hidden;
+    border: 2px solid #555;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.note.active {
+    overflow: visible;
+    height: auto;
+}
+
+.note-title {
+    width: 100%;
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 12px;
+    padding-top: 4px;
+}
+
+.note-text {
+    width: 100%;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    color: #ffffff7f;
+    font-size: 18px;
+    line-height: 111%;
+}
+
+.delete-note{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: orangered;
+    border-radius: 50%;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.new-note-menu{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+.new-note-menu.active{
+    display: flex;
+}
+
+.new-note-name-inp{
+    height: 32px;
+    width: 100%;
+    padding: 4px 8px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.new-note-inp{
+    height: 160px;
+    width: 100%;
+    padding: 4px 8px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.add-new-note{
+    padding: 4px 12px;
+    border: none;
+    background-color: green;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.cancel-new-note{
+    padding: 4px 12px;
+    border: none;
+    background-color: red;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 24px;
+    cursor: pointer;
 }

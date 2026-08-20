@@ -46,3 +46,20 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+.notes-wrap::-webkit-scrollbar {
+    width: 6px;
+}
+
+.notes-wrap::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.notes-wrap::-webkit-scrollbar-thumb {
+    background: #707070;
+    border-radius: 10px;
+}
+
+.notes-wrap::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
