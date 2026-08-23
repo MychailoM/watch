@@ -219,6 +219,10 @@ body::after {
     background-color: rgba(187, 147, 224, 0.81);
 }
 
+.open-calendar{
+    background-color: rgba(147, 214, 224, 0.81);
+}
+
 .app {
     z-index: 99;
     position: relative;
@@ -982,4 +986,86 @@ body::after {
     border-radius: 8px;
     font-size: 24px;
     cursor: pointer;
+}
+
+.calendar {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, rgba(0, 0, 0, 1) 0%, rgba(26, 26, 26, 1) 42%, rgba(33, 33, 33, 1) 69%, rgba(0, 0, 0, 1) 100%);
+    position: absolute;
+    border-radius: 64px;
+    bottom: -150%;
+    transition: all .3s ease;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.calendar.active {
+    transform: translateY(-150%);
+}
+
+.current-year{
+    color: #fff;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.calendar-controll-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.prev-month,
+.next-month{
+    background-color: transparent;
+    border: 1px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 8px;
+    color: #fff;
+    font-style: 32px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.week-days,
+.calendar-box {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #00000087;    
+    padding: 4px;
+    border: 1px solid rgb(44, 44, 44);
+}
+
+.week-days {
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    border-radius: 12px 12px 0 0;
+    padding-top: 8px;
+}
+
+.calendar-box{
+    border-radius: 0 0 12px 12px;
+}
+
+.day{
+    padding: 9px;
+    color: #fff;
+    text-align: center;
+}
+
+.calendar-box .today {
+    border: 2px solid #fff;
+    border-radius: 50%;
 }

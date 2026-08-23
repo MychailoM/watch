@@ -580,7 +580,7 @@ if (notesList.length === 0) {
 };
 
 addNewNote.addEventListener('click', () => {
-    if(newNoteTitleInp.value.trim() === ''){
+    if (newNoteTitleInp.value.trim() === '') {
         alert('Заповніть поля!');
         return
     }
@@ -596,17 +596,17 @@ addNewNote.addEventListener('click', () => {
     renderNotes();
     newNoteMenu.classList.toggle('active');
     addNote.classList.toggle('active');
-    notesWrap.classList.toggle('active'); 
+    notesWrap.classList.toggle('active');
     newNoteTextInp.value = '';
-    newNoteTitleInp.value = '';   
+    newNoteTitleInp.value = '';
 });
 
 cancelNewNote.addEventListener('click', () => {
     newNoteTextInp.value = '';
-    newNoteTitleInp.value = '';  
+    newNoteTitleInp.value = '';
     newNoteMenu.classList.toggle('active');
     addNote.classList.toggle('active');
-    notesWrap.classList.toggle('active'); 
+    notesWrap.classList.toggle('active');
 })
 
 const renderNotes = () => {
@@ -653,6 +653,134 @@ const renderNotes = () => {
 renderNotes()
 
 
-// localStorage.setItem('tasks', JSON.stringify(notesList));
-// console.log(localStorage.getItem('tasks'))
+
+
+
+const openCalendar = document.querySelector('.open-calendar');
+const closeCalendarApp = document.querySelector('.close-calendar-app');
+const calendar = document.querySelector('.calendar');
+
+const monthNameTitle = document.querySelector('.month-name');
+
+const calendarBox = document.querySelector('.calendar-box');
+
+let daysInMonth;
+let currentMonth = new Date().getMonth() + 1;
+let currentYear = new Date().getFullYear();
+let currentDay = new Date().getDate();
+
+
+openCalendar.addEventListener('click', () => {
+    calendar.classList.add('active');
+});
+
+closeCalendarApp.addEventListener('click', () => {
+    calendar.classList.remove('active');
+});
+
+function getDaysInMonth(year, month) {
+    daysInMonth = new Date(year, month, 0).getDate();
+};
+
+const getMonthName = (month) => {
+    switch (month) {
+        case 1: return 'Січень';
+        case 2: return 'Лютий';
+        case 3: return 'Березень';
+        case 4: return 'Квітень';
+        case 5: return 'Травень';
+        case 6: return 'Червень';
+        case 7: return 'Липень';
+        case 8: return 'Серпень';
+        case 9: return 'Вересень';
+        case 10: return 'Жовтень';
+        case 11: return 'Листопад';
+        case 12: return 'Грудень';
+    }
+};
+
+function getFirstDayOfMonth(year, month) {
+    const day = new Date(year, month - 1, 1).getDay();
+    return day === 0 ? 6 : day - 1;
+}
+
+const renderMonth = () => {
+    calendarBox.innerHTML = '';
+
+    const firstDay = getFirstDayOfMonth(
+        currentYear,
+        currentMonth
+    );
+
+    
+    for (let i = 0; i < firstDay; i++) {
+        const emptyDiv = document.createElement('div');
+        calendarBox.appendChild(emptyDiv);
+    }
+
+
+    for (let i = 1; i <= daysInMonth; i++) {
+        const dayDiv = document.createElement('div');
+        dayDiv.classList.add('day');
+        dayDiv.textContent = i;
+
+
+        const today = new Date();
+
+        const isToday =
+            i === today.getDate() &&
+            currentMonth === today.getMonth() + 1 &&
+            currentYear === today.getFullYear();
+
+        if (isToday) {
+            dayDiv.classList.add('today');
+        }
+
+        calendarBox.appendChild(dayDiv);
+    }
+};
+
+getDaysInMonth(currentYear, currentMonth);
+
+renderMonth();
+
+monthNameTitle.textContent = getMonthName(currentMonth);
+
+
+const currentYearText = document.querySelector('.current-year');
+
+const prevMonth = document.querySelector('.prev-month');
+const nextMonth = document.querySelector('.next-month');
+
+prevMonth.addEventListener('click', () => {
+    if (currentMonth <= 1) {
+        currentYear--;
+        currentMonth = 13;
+        currentYearText.textContent = currentYear;
+    }
+    currentMonth--;
+    renderMonth();
+    getMonthName();
+    getDaysInMonth(currentYear, currentMonth);
+    renderMonth();
+    monthNameTitle.textContent = getMonthName(currentMonth);
+    
+});
+
+nextMonth.addEventListener('click', () => {
+    if (currentMonth >= 12) {
+        currentYear++;
+        currentMonth = 0;
+        currentYearText.textContent = currentYear;
+    }
+    currentMonth++;
+    renderMonth();
+    getMonthName();
+    getDaysInMonth(currentYear, currentMonth);
+    renderMonth();
+    monthNameTitle.textContent = getMonthName(currentMonth);
+    console.log(currentYear);
+});
+
+currentYearText.textContent = currentYear;
 
