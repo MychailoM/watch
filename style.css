@@ -215,13 +215,19 @@ body::after {
     background-color: #364b74;
 }
 
-.open-notes{
+.open-notes {
     background-color: rgba(187, 147, 224, 0.81);
 }
 
-.open-calendar{
+.open-calendar {
     background-color: rgba(147, 214, 224, 0.81);
 }
+
+.open-numberGenerator {
+    background-color: #6366F1;
+}
+
+
 
 .app {
     z-index: 99;
@@ -767,7 +773,7 @@ body::after {
 }
 
 .calculator-equals-btn,
-.calculator-operator-btn.plus{
+.calculator-operator-btn.plus {
     height: 90px;
 }
 
@@ -841,13 +847,13 @@ body::after {
     transform: translateY(-150%)
 }
 
-.notes-app-wrap{
+.notes-app-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.add-note{
+.add-note {
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -862,11 +868,11 @@ body::after {
     transition: all .3s ease;
 }
 
-.add-note.active{
+.add-note.active {
     transform: rotate(45deg);
 }
 
-.notes-wrap{
+.notes-wrap {
     display: none;
     color: #fff;
     overflow-y: auto;
@@ -916,7 +922,7 @@ body::after {
     line-height: 111%;
 }
 
-.delete-note{
+.delete-note {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -933,7 +939,7 @@ body::after {
     cursor: pointer;
 }
 
-.new-note-menu{
+.new-note-menu {
     display: none;
     flex-direction: column;
     align-items: center;
@@ -941,11 +947,11 @@ body::after {
     width: 100%;
 }
 
-.new-note-menu.active{
+.new-note-menu.active {
     display: flex;
 }
 
-.new-note-name-inp{
+.new-note-name-inp {
     height: 32px;
     width: 100%;
     padding: 4px 8px;
@@ -956,7 +962,7 @@ body::after {
     font-size: 24px;
 }
 
-.new-note-inp{
+.new-note-inp {
     height: 160px;
     width: 100%;
     padding: 4px 8px;
@@ -968,7 +974,7 @@ body::after {
     font-size: 18px;
 }
 
-.add-new-note{
+.add-new-note {
     padding: 4px 12px;
     border: none;
     background-color: green;
@@ -978,7 +984,7 @@ body::after {
     cursor: pointer;
 }
 
-.cancel-new-note{
+.cancel-new-note {
     padding: 4px 12px;
     border: none;
     background-color: red;
@@ -1007,14 +1013,14 @@ body::after {
     transform: translateY(-150%);
 }
 
-.current-year{
+.current-year {
     color: #fff;
     margin: 0 auto;
     text-align: center;
     margin-bottom: 8px;
 }
 
-.calendar-controll-wrap{
+.calendar-controll-wrap {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1024,7 +1030,7 @@ body::after {
 }
 
 .prev-month,
-.next-month{
+.next-month {
     background-color: transparent;
     border: 1px solid #fff;
     display: flex;
@@ -1042,7 +1048,7 @@ body::after {
 .calendar-box {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    background-color: #00000087;    
+    background-color: #00000087;
     padding: 4px;
     border: 1px solid rgb(44, 44, 44);
 }
@@ -1055,11 +1061,11 @@ body::after {
     padding-top: 8px;
 }
 
-.calendar-box{
+.calendar-box {
     border-radius: 0 0 12px 12px;
 }
 
-.day{
+.day {
     padding: 9px;
     color: #fff;
     text-align: center;
@@ -1068,4 +1074,208 @@ body::after {
 .calendar-box .today {
     border: 2px solid #fff;
     border-radius: 50%;
+}
+
+
+.numberGenerator {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, rgba(0, 0, 0, 1) 0%, rgba(26, 26, 26, 1) 42%, rgba(33, 33, 33, 1) 69%, rgba(0, 0, 0, 1) 100%);
+    position: absolute;
+    border-radius: 64px;
+    bottom: -150%;
+    transition: all .3s ease;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.numberGenerator.active {
+    transform: translateY(-150%);
+}
+
+.numberGenerator-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+.numberGenerator-input {
+    padding: 4px;
+    width: 240px;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 8px;
+    border: 1px solid #555;
+    margin-bottom: 32px;
+}
+
+.start-numberGenerator {
+    padding: 4px;
+    width: 240px;
+    height: 40px;
+    background-color: green;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+}
+
+.randomNumber {
+    font-size: 72px;
+    margin-bottom: 32px;
+}
+
+.open-flipCoin{
+    background-color: rgb(126, 165, 151);
+}
+
+.flipCoin {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, rgba(0, 0, 0, 1) 0%, rgba(26, 26, 26, 1) 42%, rgba(33, 33, 33, 1) 69%, rgba(0, 0, 0, 1) 100%);
+    position: absolute;
+    border-radius: 64px;
+    bottom: -150%;
+    transition: all .3s ease;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.flipCoin.active {
+    transform: translateY(-150%);
+}
+
+.flipCoin-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 120px;
+}
+
+.coin {
+    display: inline-block;
+    width: 72px;
+    height: 30px;
+    border-radius: 50%;
+    transition: all .3s ease-out;
+    cursor: pointer;
+    background: linear-gradient(20deg,
+            goldenrod 0%,
+            goldenrod 30%,
+            khaki 34%,
+            khaki 50%,
+            goldenrod 54%,
+            goldenrod 60%,
+            wheat 64%,
+            wheat 67%,
+            goldenrod 71%,
+            goldenrod 100%);
+
+    box-shadow:
+        0 0.05em 0 #b8860b,
+        0 0.1em 0 #b8860b,
+        0 0.15em 0 #b8860b,
+        0 0.2em 0 #b8860b,
+        0 0.25em 0 #b8860b,
+        0 0.3em 0 #b8860b,
+        0 0.35em 0.1em rgba(0, 0, 0, 0.5);
+        position: relative;
+        z-index: 2;
+}
+
+.coin.flippy {
+    animation: flip 1.5s linear;
+}
+
+@keyframes flip {
+    0% {
+        transform: translateY(0) rotate(0);
+    }
+
+    25% {
+        transform: translateY(-60px) rotate(180deg);
+    }
+
+    50% {
+        transform: translateY(-166px) rotate(360deg);
+    }
+
+    75% {
+        transform: translateY(-126px) rotate(540deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(720deg);
+    }
+}
+
+.yon {
+    color: goldenrod;
+    font-size: 64px;
+    margin-bottom: 40px;
+}
+
+
+.open-ttt{
+    background-color: rgb(64, 64, 64);
+}
+
+.ttt {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, rgba(0, 0, 0, 1) 0%, rgba(26, 26, 26, 1) 42%, rgba(33, 33, 33, 1) 69%, rgba(0, 0, 0, 1) 100%);
+    position: absolute;
+    border-radius: 64px;
+    bottom: -150%;
+    transition: all .3s ease;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.ttt.active {
+    transform: translateY(-150%);
+}
+
+.ttt-status{
+    color: #fff;
+    font-size: 24px;
+}
+
+.ttt-wrap{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 240px;
+    height: 240px;
+    margin-top: 8px;
+    padding: 8px;
+    background-color: #fff;
+    gap: 2px;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell{
+    background-color: #222;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;
+    width: 72px;
+    height: 72px;
+    color: #fff;
 }

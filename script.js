@@ -1,4 +1,5 @@
 import { nanoid } from "https://cdn.jsdelivr.net/npm/nanoid/+esm";
+import random from "https://cdn.jsdelivr.net/npm/random/+esm";
 
 navigator.getBattery().then(battery => {
     function update() {
@@ -712,7 +713,7 @@ const renderMonth = () => {
         currentMonth
     );
 
-    
+
     for (let i = 0; i < firstDay; i++) {
         const emptyDiv = document.createElement('div');
         calendarBox.appendChild(emptyDiv);
@@ -764,7 +765,7 @@ prevMonth.addEventListener('click', () => {
     getDaysInMonth(currentYear, currentMonth);
     renderMonth();
     monthNameTitle.textContent = getMonthName(currentMonth);
-    
+
 });
 
 nextMonth.addEventListener('click', () => {
@@ -784,3 +785,156 @@ nextMonth.addEventListener('click', () => {
 
 currentYearText.textContent = currentYear;
 
+
+
+const numberGenerator = document.querySelector('.numberGenerator');
+const openNumberGenerator = document.querySelector('.open-numberGenerator');
+
+openNumberGenerator.addEventListener('click', () => {
+    numberGenerator.classList.add('active');
+});
+
+const numberGeneratorInput = document.querySelector('.numberGenerator-input');
+const startNumberGenerator = document.querySelector('.start-numberGenerator');
+const randomNumber = document.querySelector('.randomNumber');
+
+startNumberGenerator.addEventListener('click', () => {
+    let upperLimitOfNum = 100;
+
+    if (Number(numberGeneratorInput.value) === 0) {
+        upperLimitOfNum = 100;
+    } else { upperLimitOfNum = Number(numberGeneratorInput.value); }
+
+    randomNumber.textContent = random.int(0, upperLimitOfNum)
+})
+
+
+const flipCoin = document.querySelector('.flipCoin');
+const openFlipCoin = document.querySelector('.open-flipCoin');
+
+openFlipCoin.addEventListener('click', () => {
+    flipCoin.classList.add('active');
+});
+
+const coin = document.querySelector('.coin');
+const yon = document.querySelector('.yon');
+
+coin.addEventListener('click', () => {
+    coin.classList.add('flippy');
+
+    setTimeout(() => {
+        coin.classList.remove('flippy');
+        renderYonText()
+    }, 1500);
+});
+
+const renderYonText = () => {
+    switch (random.boolean()) {
+        case true:
+            { yon.textContent = 'Так' } break;
+        case false:
+            { yon.textContent = 'Ні' } break;
+    }
+}
+
+const ttt = document.querySelector('.ttt');
+const openTtt = document.querySelector('.open-ttt');
+
+openTtt.addEventListener('click', () => {
+    ttt.classList.add('active');
+});
+
+const status = document.getElementById('ttt-status');
+const board = document.getElementById('board');
+
+let cells = ['', '', '', '', '', '', '', '', ''];
+
+let gameOver = false;
+
+const wins = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
+
+cells.forEach((_, i) => {
+    const cell = document.createElement('button');
+    cell.className = 'cell';
+    cell.onclick = () => playerMovie(i);
+
+    board.appendChild(cell);
+});
+
+const playerMovie = (i) => {
+    if (gameOver || cells[i] !== '') return
+    cells[i] = 'X';
+    updateBoard(i);
+
+    if (checkGame()) return;
+    setTimeout(computerMove, 400);
+};
+
+function computerMove() {
+    if (gameOver) return;
+
+    const empty = [];
+    cells.forEach((cell, i) => {
+        if (cell === '') empty.push(i);
+        console.log(empty)
+    });
+    if (empty.length === 0) return;
+
+    const randomIndex =
+        empty[Math.floor(Math.random() * empty.length)];
+
+    cells[randomIndex] = "O";
+
+    updateBoard();
+    checkGame();
+
+    if (!gameOver) {
+        status.textContent = "Твій хід: X";
+    }
+}
+
+function checkGame() {
+    for (const combination of wins) {
+        const [a, b, c] = combination;
+
+        if (
+            cells[a] &&
+            cells[a] === cells[b] &&
+            cells[a] === cells[c]
+        ) {
+            gameOver = true;
+
+            if (cells[a] === "X") {
+                status.textContent = "Ти переміг!";
+            } else {
+                status.textContent = "Комп'ютер переміг!";
+            }
+
+            setTimeout(() => {
+                cells = ['', '', '', '', '', '', '', '', ''];
+                updateBoard();
+                gameOver = false;
+                status.textContent = '';
+            }, 3000);
+
+            return true;
+        }
+    }
+}
+
+const updateBoard = (i) => {
+    const cellButtons = document.querySelectorAll('.cell');
+
+    cellButtons.forEach((button, i) => {
+        button.textContent = cells[i];
+    })
+}

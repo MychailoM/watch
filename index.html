@@ -146,6 +146,35 @@
                     <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
             </button>
+
+            <button class="open-btns open-numberGenerator">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <circle cx="256" cy="256" r="150" fill="white" />
+                    <text x="256" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="120"
+                        font-weight="700" fill="#6366F1">?</text>
+                    <circle cx="365" cy="365" r="48" fill="#FBBF24" />
+                    <path d="M345 365l14 14 27-30" fill="none" stroke="white" stroke-width="10" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </button>
+            <button class="open-btns open-flipCoin">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="30" fill="#f5c542" stroke="#b8860b" stroke-width="5" />
+                    <text x="50" y="61" text-anchor="middle" font-size="38" font-family="Arial" font-weight="bold"
+                        fill="#fff8d6">?</text>
+                </svg>
+            </button>
+            <button class="open-btns open-ttt">
+                <svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="white" stroke-width="6" stroke-linecap="round">
+                        <path d="M80 25V215M160 25V215M25 80H215M25 160H215" />
+                    </g>
+                    <g stroke="#ff4d6d" stroke-width="8" stroke-linecap="round">
+                        <path d="M27 27L63 63M63 27L27 63M177 177L213 213M213 177L177 213" />
+                    </g>
+                    <circle cx="120" cy="120" r="25" fill="none" stroke="#4dabf7" stroke-width="8" />
+                </svg>
+            </button>
         </div>
         <div class="timer app">
             <button class="close-app">X</button>
@@ -304,6 +333,34 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="numberGenerator app">
+            <button class="close-app">X</button>
+
+            <div class="numberGenerator-wrap">
+                <input type="text" placeholder="Змініть межу" class="numberGenerator-input">
+                <h2 style="color: #fff;" class="randomNumber">00</h2>
+                <button type="button" class="start-numberGenerator">Start</button>
+            </div>
+        </div>
+
+        <div class="flipCoin app">
+            <button class="close-app">X</button>
+
+            <div class="flipCoin-wrap">
+                <h2 class="yon">---</h2>
+                <span class="coin"></span>
+            </div>
+        </div>
+
+        <div class="ttt app">
+            <button class="close-app">X</button>
+
+            <h3 class="ttt-status" id="ttt-status"></h3>
+            <div class="ttt-wrap" id="board">
+                
+            </div>
         </div>
     </div>
 
