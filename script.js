@@ -938,3 +938,49 @@ const updateBoard = (i) => {
         button.textContent = cells[i];
     })
 }
+
+const openYearCalculate = document.querySelector('.open-yearCalculate');
+const yearCalculate = document.querySelector('.yearCalculate');
+
+openYearCalculate.addEventListener('click', () => {
+    yearCalculate.classList.add('active')
+})
+
+const switchMode = document.querySelector('.switch-mode');
+const calcualtorAge = document.querySelector('.calcualtor-age');
+const birthCalculator = document.querySelector('.birth-calculator');
+
+switchMode.addEventListener('click', () => {
+    switchMode.classList.toggle('active');
+    calcualtorAge.classList.toggle('active');
+    birthCalculator.classList.toggle('active');
+})
+
+const yearOfBirth = document.querySelector('.yearOfBirth');
+const startCalcualtorAge = document.querySelector('.start-calcualtor-age');
+const userAge = document.querySelector('.age');
+
+startCalcualtorAge.addEventListener('click', () => {
+    const birthDate = new Date(yearOfBirth.value);
+    const now = new Date();
+
+    let age = now.getFullYear() - birthDate.getFullYear();
+
+    const birthdayPassed =
+        now.getMonth() > birthDate.getMonth() ||
+        (now.getMonth() === birthDate.getMonth() &&
+            now.getDate() >= birthDate.getDate());
+
+    if (!birthdayPassed) age--;
+
+    userAge.textContent = age;
+})
+
+
+const userCurrentAge = document.querySelector('.userCurrentAge');
+const startCalcualtorBirth = document.querySelector('.start-calcualtor-birth');
+const birth = document.querySelector('.birth');
+
+startCalcualtorBirth.addEventListener('click', () => {
+    birth.textContent = currentYear-userCurrentAge.value;
+}) 

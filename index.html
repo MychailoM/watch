@@ -165,7 +165,7 @@
                 </svg>
             </button>
             <button class="open-btns open-ttt">
-                <svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+                <svg width="40" height="40" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
                     <g stroke="white" stroke-width="6" stroke-linecap="round">
                         <path d="M80 25V215M160 25V215M25 80H215M25 160H215" />
                     </g>
@@ -173,6 +173,18 @@
                         <path d="M27 27L63 63M63 27L27 63M177 177L213 213M213 177L177 213" />
                     </g>
                     <circle cx="120" cy="120" r="25" fill="none" stroke="#4dabf7" stroke-width="8" />
+                </svg>
+            </button>
+            <button class="open-btns open-yearCalculate">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+                    <circle cx="32" cy="32" r="27" stroke="#fff" stroke-width="4" />
+                    <circle cx="25" cy="25" r="6" stroke="#fff" stroke-width="3" />
+                    <path d="M15 44C16.5 35.5 20 32 25 32C30 32 33.5 35.5 35 44" stroke="#fff" stroke-width="3"
+                        stroke-linecap="round" />
+                    <path d="M38 20C45 23 48 29 48 36" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+                    <path d="M43 35L48 40L52 35" stroke="#fff" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M39 46H50" stroke="#fff" stroke-width="3" stroke-linecap="round" />
                 </svg>
             </button>
         </div>
@@ -359,7 +371,32 @@
 
             <h3 class="ttt-status" id="ttt-status"></h3>
             <div class="ttt-wrap" id="board">
-                
+
+            </div>
+        </div>
+
+        <div class="yearCalculate app">
+            <button class="close-app">X</button>
+
+            <div class="switch">
+                <button type="button" class="switch-mode">
+                    <span class="slider"></span>
+                </button>
+            </div>
+
+            <div class="calcualtor-age active">
+                <div class="calculator-age-controll">
+                    <input type="date" class="yearOfBirth">
+                    <button class="start-calcualtor-age">Ok</button>
+                </div>
+                <h3 class="age">--</h3>
+            </div>
+            <div class="birth-calculator">
+                <div class="calculator-birth-controll">
+                    <input type="number" class="userCurrentAge">
+                    <button class="start-calcualtor-birth">Ok</button>
+                </div>
+                <h3 class="birth">----</h3>
             </div>
         </div>
     </div>
